@@ -21,8 +21,11 @@ class HomePage extends StatelessWidget {
       drawer: const AppDrawer(),
       extendBodyBehindAppBar: true, // allows the AppBar to float over body
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+          size: 30,
+        ),
         backgroundColor: Colors.transparent,
-        elevation: 0,
         title: Text(
           'HOME PAGE',
           style: GoogleFonts.bebasNeue(

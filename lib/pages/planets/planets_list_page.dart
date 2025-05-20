@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:space_objects_explorer_app/helper_components/space_grading_type.dart';
-import 'package:space_objects_explorer_app/services/asteroid_service.dart';
-import 'package:space_objects_explorer_app/widgets/asteroid_card.dart';
+import 'package:space_objects_explorer_app/widgets/planet_card.dart';
 
 import '../../helper_components/space_grading.dart';
-import '../../models/asteroid_model.dart';
+import '../../models/planet_model.dart';
+import '../../services/planet_service.dart';
 
-class AsteroidsListPage extends StatefulWidget {
-  const AsteroidsListPage({super.key});
+class PlanetsListPage extends StatefulWidget {
+  const PlanetsListPage({super.key});
 
   @override
-  State<AsteroidsListPage> createState() => _AsteroidsListPageState();
+  State<PlanetsListPage> createState() => _PlanetsListPageState();
 }
 
-class _AsteroidsListPageState extends State<AsteroidsListPage> {
+class _PlanetsListPageState extends State<PlanetsListPage> {
 
-  final AsteroidService asteroidService = AsteroidService('D8jHooSCZEPSd1Nt6KaDqUB7pephg9H8N1BU1zYY');
-  List<Asteroid>? asteroids;
+  final PlanetService planetService = PlanetService();
+  List<Planet>? planets;
 
-  Future<void> _getAsteroids() async {
-    String todayDate = asteroidService.getTodayDateFormatted();
+  Future<void> _getPlanets() async {
     try {
-      final data = await asteroidService.getAsteroidsData(todayDate);
+      final data = await planetService.getPlanetsData();
       setState(() {
-        asteroids = data;
+        planets = data;
       });
     } catch (exception) {
       print(exception);
     }
   }
 
+
   @override
   void initState() {
     super.initState();
-    _getAsteroids();
+    _getPlanets();
   }
 
   @override
@@ -42,7 +42,7 @@ class _AsteroidsListPageState extends State<AsteroidsListPage> {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          gradient: SpaceGrading((SpaceGradingType.green)),
+          gradient: SpaceGrading((SpaceGradingType.red)),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -52,7 +52,7 @@ class _AsteroidsListPageState extends State<AsteroidsListPage> {
               size: 30,
             ),
             title: Text(
-              'ASTEROIDS',
+              'PLANETS',
               style: GoogleFonts.bebasNeue(
                 color: Colors.white,
                 fontSize: 35,
@@ -68,19 +68,21 @@ class _AsteroidsListPageState extends State<AsteroidsListPage> {
             children: [
               const SizedBox(height: 50),
               Expanded(
-                child: asteroids == null
+                child: planets == null
                     ? const Center(
                         child: CircularProgressIndicator(
                           color: Colors.white,
                         ),
-                      )
+                    )
                     : ListView.builder(
-                        itemCount: asteroids!.length,
-                        itemBuilder: (context, index) {
-                          final asteroid = asteroids![index];
-                          return AsteroidCard(asteroid: asteroid);
-                        },
-                      ),
+                  itemCount: planets!.length,
+                  itemBuilder: (context, index) {
+                    final planet = planets![index];
+                    return PlanetCard(
+                      planet: planet,
+                    );
+                  },
+                ),
               ),
             ],
           ),

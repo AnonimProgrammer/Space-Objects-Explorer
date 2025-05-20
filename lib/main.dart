@@ -4,7 +4,6 @@ import 'package:space_objects_explorer_app/pages/home_page.dart';
 import 'package:space_objects_explorer_app/pages/planets/planets_list_page.dart';
 import 'package:space_objects_explorer_app/pages/preview_page.dart';
 import 'package:space_objects_explorer_app/pages/satellites/satellites_list_page.dart';
-import 'package:space_objects_explorer_app/storage/favorites_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(appBarTheme: AppBarTheme(
+        color: Colors.white,
+      )),
       title: 'Space Explorer',
       routes: {
         '/home': (context) => HomePage(),
