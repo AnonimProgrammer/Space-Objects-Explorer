@@ -32,8 +32,8 @@
     - Favorite Satellites
 
 - 📊 **Custom Grading System**  
-  - Each space object receives a grade based on specific criteria such as size, speed, or visibility.
-  - Grades are calculated programmatically and displayed on detail pages for an educational and fun experience.
+  - Simple Grading system was designed for different type of pages, for example red for planets, purple for satellites and green for asteroids.
+
 
 - 🖋️ **Typography with Google Fonts**  
   - UI styling is enhanced using the [`google_fonts`](https://pub.dev/packages/google_fonts) package for clean, readable, and themed text.
