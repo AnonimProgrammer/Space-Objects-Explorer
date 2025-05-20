@@ -23,7 +23,7 @@
   - Tapping an object opens a detailed page with all relevant information.
 
 - ⭐ **Favorites System**  
-  - Users can add or remove any object to/from favorites directly from the details page.
+  - Users can add or remove any object to/from favorites from the corresponding favorites page or details page.
   - Favorites are stored persistently using `SharedPreferences`.
   - Logic for managing favorites is centralized in `favorites_storage.dart`.
   - Drawer menu links to:
